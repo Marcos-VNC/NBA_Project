@@ -1,0 +1,35 @@
+
+body{
+    background-color: #202020 !important;
+}
+
+h1{
+    color: white !important;
+}
+
+
+#img{
+    max-width: 70% !important;
+    max-height: 70% !important;
+    height: 70% !important;
+    width: 50% !important;
+}
+
+#imgLogo{
+    width: 200 !important;
+    height: 200 !important;
+}
+
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#offcanvasTop{
+    height: 90% !important;
+    min-height: 90% !important;
+}

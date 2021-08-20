@@ -1,0 +1,46 @@
+{%extends 'base.html' %}
+{% load static %}
+
+{%block 'titulo' %} NBA {%endblock%}
+
+{%block 'conteudo'%}
+    <div class="container-md">
+        <div>
+            <h1>Time NBA</h1>
+        </div>
+
+        <div class="card mb-3" style="max-width: 540px;">
+          <div class="row g-0">
+            <div class="col-md-4">
+                {%  if dados.foto %}
+                <img id="imgLogo" src="{{dados.foto.url}}" class="img-fluid rounded-start" alt="...">
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{dados.nome}}</h5>
+                <p class="card-text">{{dados.descricao}}</p>
+                <p class="card-text" ><small class="text-muted" >Data : {{dados.dataInicio|date:'d/m/y'}}</small></p>
+              </div>
+                 <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">Estádio/Arena</button>
+            </div>
+              <div class="card-footer bg-transparent border-success"><a href="{% url 'home' %}"><button type="button" class="btn btn-outline-dark">Home</button></a></div>
+          </div>
+        </div>
+
+
+
+        <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+          <div class="offcanvas-header">
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            {%  if dados.estadio %}
+                <img id="" src="{{dados.estadio.url}}" class="img-fluid rounded-start" alt="...">
+                {% endif %}
+          </div>
+        </div>
+
+    </div>
+
+{%endblock%}

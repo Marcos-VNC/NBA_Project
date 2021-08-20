@@ -1,0 +1,69 @@
+{%extends 'base.html' %}
+{% load static %}
+
+{%block 'titulo' %} NBA {%endblock%}
+
+{%block 'conteudo'%}
+    <div class="container-md">
+        <div class="mt-2">
+            <h1>Times da NBA!</h1>
+            {% for mensagem in messages %}
+                <div class="toast align-items-center text-white bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                  <div class="d-flex">
+                    <div class="toast-body">
+                      {{mensagem}}
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                  </div>
+                </div>
+            <div class="alert {{mensagem.tags}}">
+                {{mensagem}}
+            </div>
+
+            {% endfor %}
+            <div class="input-group mb-3">
+                <form action="{% url 'buscar' %}" method="get">
+                    <div class="input-group flex-nowrap">
+                      <span class="input-group-text" id="addon-wrapping">Buscar Time</span>
+                      <input type="text" name="buscar" id="" class="form-control" placeholder="Digite o nome do time" aria-label="Nome" aria-describedby="addon-wrapping">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <table class="table table-dark table-striped">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Descrição</th>
+              <th scope="col">Data Inicio</th>
+            </tr>
+          </thead>
+          <tbody>
+                {%for dado in dados%}
+                <tr>
+                    <th scope="row"><a href="{% url 'times' dado.id  %}"><button type="button" class="btn btn-outline-primary">{{ dado.id }}</button></a></th>
+                    <td>{{dado.nome}}</td>
+                    <td>{{dado.descricao}}</td>
+                    <td>{{dado.dataInicio|date:'d/m/y'}}</td>
+                </tr>
+                {% endfor %}
+          </tbody>
+    </table>
+    </div>
+  {%endblock%}
+
+    {%block 'scripts' %}
+    <script>
+        var toastTrigger = document.getElementById('liveToastBtn')
+        var toastLiveExample = document.getElementById('liveToast')
+        if (toastTrigger) {
+          toastTrigger.addEventListener('click', function () {
+            var toast = new bootstrap.Toast(toastLiveExample)
+
+            toast.show()
+          })
+        }
+    </script>
+    {%endblock%}
