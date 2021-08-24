@@ -20,6 +20,10 @@ h1{
     height: 200 !important;
 }
 
+.row{
+color: white !important;
+}
+
 
 .container{
     display: flex;

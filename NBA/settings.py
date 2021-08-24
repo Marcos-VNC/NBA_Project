@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home.apps.HomeConfig',
+    'user.apps.UserConfig',
 ]
 
 MIDDLEWARE = [
@@ -138,5 +139,6 @@ from django.contrib.messages import constants
 MESSAGE_TAGS = {
     constants.INFO: 'alert-info',
     constants.ERROR: 'alert-danger',
+    constants.WARNING: 'alert-warning',
     constants.SUCCESS: 'alert-success'
 }

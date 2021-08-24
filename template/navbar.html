@@ -1,0 +1,13 @@
+{% load static %}
+
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a href="{% url 'home' %}" class="navbar-brand mb-0 h1">
+        <img src="{% static 'imgs/ball.png' %}" alt="" width="30" height="30">
+        Home
+    </a>
+      <form action="{% url 'buscar' %}" method="get" class="d-flex">
+          <input class="form-control me-2" type="text" placeholder="Buscar Time" name="buscar">
+      </form>
+  </div>
+</nav>

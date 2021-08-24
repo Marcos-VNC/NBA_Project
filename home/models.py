@@ -14,7 +14,7 @@ class Cidade(models.Model):
 
 class Time(models.Model):
     nome = models.CharField(max_length=30)
-    descricao = models.CharField(max_length=50)
+    descricao = models.CharField(max_length=150)
     dataInicio = models.DateTimeField(default=timezone.now())
     mostrar = models.BooleanField(default=True)
     Cidade = models.ForeignKey(Cidade, on_delete=models.DO_NOTHING)
