@@ -6,8 +6,18 @@
         <img src="{% static 'imgs/ball.png' %}" alt="" width="30" height="30">
         Home
     </a>
-      <form action="{% url 'buscar' %}" method="get" class="d-flex">
-          <input class="form-control me-2" type="text" placeholder="Buscar Time" name="buscar">
-      </form>
+      <div class="d-flex">
+          {% if 'user' not in request.path %}
+          <form action="{% url 'buscar' %}" method="get" class="d-flex">
+            <input class="form-control me-2" type="text" placeholder="Buscar Time" name="buscar">
+          </form>
+          {% endif %}
+          {% if user.is_authenticated %}
+            <a class="btn btn-outline-primary" href="{% url 'dashboard' %}">Dashboard</a>|
+            <a class="btn btn-outline-primary" href="{% url 'logout' %}">Logout</a>
+          {% else %}
+            <a class="btn btn-outline-primary" href="{% url 'login' %}">Login</a>
+          {% endif %}
+      </div>
   </div>
 </nav>
