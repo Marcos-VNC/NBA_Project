@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 25-Ago-2021 às 16:37
+-- Tempo de geração: 08-Set-2021 às 16:04
 -- Versão do servidor: 10.4.19-MariaDB
 -- versão do PHP: 8.0.7
 
@@ -93,7 +93,11 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 (29, 'Can add time', 8, 'add_time'),
 (30, 'Can change time', 8, 'change_time'),
 (31, 'Can delete time', 8, 'delete_time'),
-(32, 'Can view time', 8, 'view_time');
+(32, 'Can view time', 8, 'view_time'),
+(33, 'Can add usuario', 9, 'add_usuario'),
+(34, 'Can change usuario', 9, 'change_usuario'),
+(35, 'Can delete usuario', 9, 'delete_usuario'),
+(36, 'Can view usuario', 9, 'view_usuario');
 
 -- --------------------------------------------------------
 
@@ -120,8 +124,8 @@ CREATE TABLE `auth_user` (
 --
 
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
-(1, 'pbkdf2_sha256$260000$nPkJSSQFEb8hGlCX4N9oME$igOUCZdNgPx99oRQBWf792xXwe6DnDE5CpuNQTTM9GI=', '2021-08-25 13:57:41.298882', 1, 'admin2', '', '', 'admin2@admin2.com', 1, 1, '2021-08-24 11:09:55.657151'),
-(2, 'pbkdf2_sha256$260000$RB1QQu1AjeKBGYCsAJ3pqQ$Bot/97RnlGHjmJkCNQOqOGppDwHKVpcGNUlqeGyCH34=', NULL, 0, 'Marcos', 'Marcos Vinicius', 'Cardoso Correa', 'marcos@marcos.com', 0, 1, '2021-08-25 13:50:55.574036'),
+(1, 'pbkdf2_sha256$260000$nPkJSSQFEb8hGlCX4N9oME$igOUCZdNgPx99oRQBWf792xXwe6DnDE5CpuNQTTM9GI=', '2021-09-08 11:32:34.385090', 1, 'admin2', '', '', 'admin2@admin2.com', 1, 1, '2021-08-24 11:09:55.657151'),
+(2, 'pbkdf2_sha256$260000$RB1QQu1AjeKBGYCsAJ3pqQ$Bot/97RnlGHjmJkCNQOqOGppDwHKVpcGNUlqeGyCH34=', '2021-09-08 11:53:03.839943', 1, 'Marcos', 'Marcos Vinicius', 'Cardoso Correa', 'marcos@marcos.com', 1, 1, '2021-08-25 13:50:55.000000'),
 (3, 'pbkdf2_sha256$260000$6KtPMiXJhPK2Fny4zMcKO4$BEmnD5C7sv8avIkW2l6lbAsc+SrUk5oACpuAqh88l/E=', '2021-08-25 14:26:41.961821', 0, 'Marcos_vnc', 'Marcos Vinicius', 'Cardoso Correa', 'marcosvn@marcos.com', 0, 1, '2021-08-25 13:53:22.023227');
 
 -- --------------------------------------------------------
@@ -171,7 +175,8 @@ CREATE TABLE `django_admin_log` (
 
 INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`, `action_flag`, `change_message`, `content_type_id`, `user_id`) VALUES
 (1, '2021-08-24 11:27:07.313032', '6', 'Charlotte', 1, '[{\"added\": {}}]', 7, 1),
-(2, '2021-08-24 11:37:00.605012', '6', 'Charlotte Hornets', 1, '[{\"added\": {}}]', 8, 1);
+(2, '2021-08-24 11:37:00.605012', '6', 'Charlotte Hornets', 1, '[{\"added\": {}}]', 8, 1),
+(3, '2021-09-08 11:36:00.810566', '2', 'Marcos', 2, '[{\"changed\": {\"fields\": [\"Staff status\", \"Superuser status\"]}}]', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -197,7 +202,8 @@ INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 (5, 'contenttypes', 'contenttype'),
 (7, 'home', 'cidade'),
 (8, 'home', 'time'),
-(6, 'sessions', 'session');
+(6, 'sessions', 'session'),
+(9, 'user', 'usuario');
 
 -- --------------------------------------------------------
 
@@ -239,7 +245,10 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (20, 'home', '0003_auto_20210817_0935', '2021-08-18 13:10:59.376817'),
 (21, 'sessions', '0001_initial', '2021-08-18 13:11:00.947428'),
 (22, 'home', '0004_alter_time_datainicio', '2021-08-18 13:13:50.489738'),
-(23, 'home', '0005_auto_20210824_0813', '2021-08-24 11:13:53.286353');
+(23, 'home', '0005_auto_20210824_0813', '2021-08-24 11:13:53.286353'),
+(24, 'home', '0006_alter_time_datainicio', '2021-09-08 11:29:28.947811'),
+(25, 'user', '0001_initial', '2021-09-08 11:29:32.327540'),
+(26, 'home', '0007_alter_time_datainicio', '2021-09-08 12:41:22.609164');
 
 -- --------------------------------------------------------
 
@@ -259,6 +268,7 @@ CREATE TABLE `django_session` (
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
 ('4v7i4n8g8tivxj52ikpxaw4xt7b7whyj', '.eJxVjEsOwjAMBe-SNYrSpFZjluw5Q-TYFimgROpnVXF3WqkL2L6ZeZtJtC4lrbNOaRRzNcFcfrdM_NJ6AHlSfTTLrS7TmO2h2JPO9t5E37fT_TsoNJe9VgWmjgl6BBEKHB0GFWGkHQEEHxFVe-eIoidF9uI6P-TBe3UBzOcLDvY4WQ:1mItrW:0nqTtenhqwXVBR3i_1g85IUfF1YeTRkjiDiFEzaK7cU', '2021-09-08 14:26:42.012805'),
+('lqylujo9c37bo2kii1w5ianch9o5vzrj', '.eJxVjDsOwjAQBe_iGln-Z0NJnzNYa--CA8iW4qRC3B0ipYD2zcx7iYjbWuLWeYkzibMw4vS7JcwPrjugO9Zbk7nVdZmT3BV50C6nRvy8HO7fQcFevvXgbQL2oMFnOyajyZElD0EHuiIPIXsbUEFGw6CccgZH4JTYKGUwW_H-ANExN5c:1mNw8W:VnAZtVCAzRYHUD2AxDi6zR1XBX0oz9_417dEREgDQj8', '2021-09-22 11:53:04.242710'),
 ('nsh4t66m9ledb7dt909rg2ldlujlj10b', '.eJxVjEEOwiAQRe_C2pBMBhhw6d4zkIFBqRpISrsy3t026UK3773_3yryutS4jjLHSdRZgTr9ssT5Wdou5MHt3nXubZmnpPdEH3boa5fyuhzt30HlUbc1IYNBdmAT3zxiEQpQvAsejQTyYJgNZOQNZ7DkyAsEI-KtJSlZfb7Dcjct:1mIUKy:Cb_eTz-83cZuK2hA1LCueIuTryXwW7NvTIoTrW7fA6s', '2021-09-07 11:11:24.611690');
 
 -- --------------------------------------------------------
@@ -425,7 +435,7 @@ ALTER TABLE `auth_group_permissions`
 -- AUTO_INCREMENT de tabela `auth_permission`
 --
 ALTER TABLE `auth_permission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT de tabela `auth_user`
@@ -449,19 +459,19 @@ ALTER TABLE `auth_user_user_permissions`
 -- AUTO_INCREMENT de tabela `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `django_content_type`
 --
 ALTER TABLE `django_content_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de tabela `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de tabela `home_cidade`

@@ -14,6 +14,9 @@
           {% endif %}
           {% if user.is_authenticated %}
             <a class="btn btn-outline-primary" href="{% url 'dashboard' %}">Dashboard</a>|
+            {% if 'dashboard' in request.path %}
+                <a class="btn btn-outline-primary" href="{% url 'post' %}">Fazer post</a>|
+            {% endif %}
             <a class="btn btn-outline-primary" href="{% url 'logout' %}">Logout</a>
           {% else %}
             <a class="btn btn-outline-primary" href="{% url 'login' %}">Login</a>

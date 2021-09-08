@@ -3,6 +3,7 @@ from django.contrib import messages, auth
 from django.core.validators import validate_email
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from .models import form_usuario, Usuario
 
 
 # Create your views here.
@@ -73,6 +74,23 @@ def register(request):
     user.save()
     return redirect('login')
 
+
 @login_required(redirect_field_name='login')
 def dashboard(request):
-    return render(request, 'users/dashboard.html')
+    if request.method != 'POST':
+        return render(request, 'users/dashboard.html')
+
+    form = form_usuario(request.POST, request.FILES)
+    if not form.is_valid():
+        form = form_usuario(request.POST)
+        return render(request, 'users/dashboard.html', {'form':form})
+    else:
+        form.save()
+        return render(request, 'users/dashboard.html')
+
+
+
+@login_required(redirect_field_name='login')
+def post(request):
+    form = form_usuario()
+    return render(request, 'users/post_usuario.html', {'form':form})

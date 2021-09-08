@@ -1,0 +1,37 @@
+{%extends 'baseUser.html' %}
+{% load static %}
+
+{%block 'style' %}
+    label{
+        color: white;
+    }
+{%endblock%}
+
+{%block 'titulo' %} POST {%endblock%}
+
+{%block 'conteudo'%}
+{% include 'msg.html' %}
+<div>
+<form action="{% url 'dashboard' %}" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+    {{form}}
+    <br>
+    <button type="submit">Enviar</button>
+</form>
+</div>
+
+{% endblock %}
+
+
+
+{%block 'scripts' %}
+<script>
+
+$("div").addClass("mb-3");
+$("label").addClass("form-label");
+$("input").addClass("form-control");
+$("select").addClass("form-select");
+$("button").addClass("btn btn-outline-success");
+
+</script>
+{%endblock%}
